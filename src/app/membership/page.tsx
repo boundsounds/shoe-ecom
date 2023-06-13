@@ -29,7 +29,7 @@ export default function Membership() {
         Membership
       </Typography>
       <Typography variant="body1" sx={{ textAlign: 'center', mb: 3 }}>
-        Choose the plan that's right for you
+        Choose the plan thats right for you
       </Typography>
       <Grid container spacing={2} sx={{ maxWidth: '1000px', margin: '0 auto' }}>
         {data.map((row) => (
