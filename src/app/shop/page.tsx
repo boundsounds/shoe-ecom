@@ -6,13 +6,19 @@ import itemsData from '../../../public/data/items.json';
 
 const ShoeList = () => {
   return (
-    <Container maxWidth="xl" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', minHeight: '100vh' }}>
+    <Container maxWidth={false} sx={{ px: 4, py: 2 }}>
       <Grid container spacing={2}>
         {itemsData.items.map((item) => (
-          <Grid item xs={12} sm={4} key={item.id}>
-            <Link href={`products/${item.id}`} passHref>
-              <Card>
-                <CardMedia component="img" height="200" image={item.image} alt={item.name} />
+          <Grid item xs={12} sm={6} md={4} lg={3} key={item.id}>
+            <Link href={`/products/${item.id}`} style={{ textDecoration: 'none' }}>
+              <Card sx={{ height: '100%' }}>
+                <CardMedia
+                  component="img"
+                  height="200"
+                  image={item.image}
+                  alt={item.name}
+                  sx={{ objectFit: 'cover' }}
+                />
                 <CardContent>
                   <Typography variant="h6" component="div" gutterBottom>
                     {item.name}
