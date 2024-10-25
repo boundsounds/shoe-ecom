@@ -3,7 +3,7 @@ import { Tooltip, MenuItem } from '@mui/material';
 import Link from 'next/link';
 import React from 'react';
 import { RecoilRoot, useRecoilValue } from 'recoil';
-import { cartItemsState } from '../state';
+import { cartItemsState } from '../../app/state';
 import { CartItem } from '@/types';
 
 function CartButton() {

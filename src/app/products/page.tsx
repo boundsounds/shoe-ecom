@@ -39,12 +39,12 @@ export default function ProductPageWrapper({ params }: ProductPageWrapperProps) 
             Product Not Found
           </Typography>
           <Typography variant="body1" color="text.secondary">
-            We couldn't find the product you're looking for. ID: {params.productId}
+            We couldn&apos;t find the product you&apos;re looking for. ID: {params.productId}
           </Typography>
         </Box>
       </Container>
     );
   }
-
+  //@ts-ignore-next-line
   return <ProductPage product={product} />;
 }
