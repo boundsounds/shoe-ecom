@@ -1,19 +1,9 @@
-/* eslint-disable @next/next/no-img-element */
 "use client"
 import { CartItem } from '@/types';
-/* eslint-disable @next/next/no-img-element */
 import React from 'react';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { cartItemsState } from '../state';
-import { Box, Card, CardMedia, CardContent, Typography, Button, useTheme, Container } from '@mui/material';
-
-type Product = {
-  id: string;
-  name: string;
-  price: string;
-  image: string;
-  description: string;
-};
+import { Box, Typography, Button, useTheme, Container } from '@mui/material';
 
 export default function Cart() {
   const cartItems = useRecoilValue<CartItem[]>(cartItemsState);
@@ -32,15 +22,10 @@ export default function Cart() {
     });
   };
 
-
-
   const calculateTotal = () => {
-    let total = 0;
-    cartItems.forEach((item) => {
-      const price = parseFloat(item.price);
-      total += price;
-    });
-    return total.toFixed(2);
+    return cartItems
+      .reduce((total, item) => total + parseFloat(item.price), 0)
+      .toFixed(2);
   };
 
   return (
@@ -50,15 +35,15 @@ export default function Cart() {
         {cartItems.length === 0 ? (
           <p>No items in the cart</p>
         ) : (
-          <Box component="div" display="flex" flexDirection="row" alignItems="flex-start" padding="16px">
-            <Box component="div" flexGrow={1}>
+          <Box display="flex" flexDirection="row" alignItems="flex-start" padding="16px">
+            <Box flexGrow={1}>
               {cartItems.map((item) => (
                 <Box
+                  key={item.id}
                   display="flex"
                   alignItems="center"
                   padding="16px"
                   borderBottom="1px solid #e0e0e0"
-                  key={item.id}
                 >
                   <Box marginRight="16px">
                     <img src={item.image} alt={item.name} style={{ width: '100px' }} />
@@ -80,7 +65,15 @@ export default function Cart() {
                 </Box>
               ))}
             </Box>
-            <Box component="div" padding="16px" sx={{ backgroundColor: '#E7E5D8', width: '30%', height: '30%', borderRadius: '8px' }}>
+            <Box
+              padding="16px"
+              sx={{
+                backgroundColor: '#E7E5D8',
+                width: '30%',
+                height: '30%',
+                borderRadius: '8px'
+              }}
+            >
               <Typography variant="h6" component="div">
                 Total: ${calculateTotal()}
               </Typography>
